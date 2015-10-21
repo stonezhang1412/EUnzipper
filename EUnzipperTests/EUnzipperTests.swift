@@ -37,6 +37,7 @@ class EUnzipperTests: XCTestCase {
     }
     
     func testStoreData() {
+        unzipper.toURL = nil
         if let data = unzipper["mimetype"] {
             if let str = NSString(data: data, encoding: NSUTF8StringEncoding) {
                 XCTAssertEqual(str, "application/epub+zip", "data content should be `application/epub+zip`")
@@ -49,6 +50,7 @@ class EUnzipperTests: XCTestCase {
     }
     
     func testDeflateData() {
+        unzipper.toURL = nil
         if let data = unzipper["META-INF/container.xml"] {
             let b = NSBundle(forClass: EUnzipperTests.self)
             let url = b.URLForResource("container", withExtension: "xml")!
@@ -59,4 +61,33 @@ class EUnzipperTests: XCTestCase {
         }
     }
     
+    func testUnzipFiles() {
+        let dirPaths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+        let docsDir = dirPaths[0]
+        let folderName = "test"
+        let unzipPath = "\(docsDir)/\(folderName)"
+        let fm = NSFileManager.defaultManager()
+        if unzipper.unzipFilesToURL(NSURL.fileURLWithPath(unzipPath)) {
+            XCTAssertTrue(fm.fileExistsAtPath("\(unzipPath)/OEBPS/text/book_0006.xhtml"), "\(unzipPath)/OEBPS/text/book_0006.xhtml should be existed")
+        } else {
+            XCTFail("can not unzip files")
+        }
+    }
+    
+    func testDataFromUnzipFile() {
+        if unzipper.toURL == nil {
+            testUnzipFiles()
+        }
+        
+        if let data = unzipper["mimetype"] {
+            if let str = NSString(data: data, encoding: NSUTF8StringEncoding) {
+                XCTAssertEqual(str, "application/epub+zip", "uncompressed data content should be `application/epub+zip`")
+            } else {
+                XCTFail("can't init string from uncompressed data")
+            }
+        } else {
+                XCTFail("can not get data from uncompressed date")
+        }
+    }
+
 }
