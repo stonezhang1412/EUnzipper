@@ -189,6 +189,7 @@
 				TargetAttributes = {
 					8E6346E11BD51AAB00FAB96C = {
 						CreatedOnToolsVersion = 7.0.1;
+						DevelopmentTeam = G5P97MTSW8;
 					};
 					8E6346EB1BD51AAB00FAB96C = {
 						CreatedOnToolsVersion = 7.0.1;
@@ -357,6 +358,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -376,6 +378,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -429,6 +432,7 @@
 				8E6346F81BD51AAB00FAB96C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8E6346F91BD51AAB00FAB96C /* Build configuration list for PBXNativeTarget "EUnzipperTests" */ = {
 			isa = XCConfigurationList;
@@ -437,6 +441,7 @@
 				8E6346FB1BD51AAB00FAB96C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
